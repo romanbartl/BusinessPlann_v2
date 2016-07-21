@@ -16,8 +16,11 @@ class RouterFactory
 	public static function createRouter()
 	{
 		$router = new RouteList;
-		$router[] = new Route('<presenter>/<action>[/<id>]', 'Homepage:default');
-		return $router;
+        $router[] = new Route('<locale cs|en|ru>/sign/<action>', array('presenter' => 'Sign'));
+        $router[] = new Route('<locale cs|en|ru>/home', array('presenter' => 'Homepage', 'action' => 'default'));
+        $router[] = new Route('<presenter>/<action>[/<id>]', 'Homepage:redirect');
+
+        return $router;
 	}
 
 }
