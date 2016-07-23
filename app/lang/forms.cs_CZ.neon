@@ -1,0 +1,10 @@
+signin:
+    password: Heslo
+    submit: Přihlásit
+
+signup:
+    name: Jméno
+    surname: Příjmení
+    password: Heslo
+    password_again: Heslo znovu
+    submit: Vytvořit bezplatný účet

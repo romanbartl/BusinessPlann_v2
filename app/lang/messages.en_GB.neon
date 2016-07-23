@@ -1,0 +1,19 @@
+signinForm:
+    incorrect_email: Incorrect password!
+    empty_email: E-mail field has to be filled!
+    incorrect_passwd: Incorrect password!
+    empty_passwd: Password field has to be filled!
+    incorrect_passwd_or_email: The e-mail or password you entered is incorrect!
+
+signupForm:
+    incorrect_name: Incorrect name!
+    name_length: Length of name must be at least %d letters!
+    empty_name:  Name field has to be filled!
+    incorrect_surname: Incorrect surname!
+    surname_length: Length of surname must be at least %d letters!
+    empty_surname: Surname field has to be filled!
+    incorrect_email: Incorrect e-mail!
+    empty_email: E-mail field has to be filled!
+    incorrect_passwd: Password has to contain at lest 8 letters one big letter and one number!
+    same_passwds: Passwords have to be same!
+    empty_passwd: Password field has to be filled!

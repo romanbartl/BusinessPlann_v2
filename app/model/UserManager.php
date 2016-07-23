@@ -2,84 +2,84 @@
 
 namespace App\Model;
 
-use Nette;
-use Nette\Security\Passwords;
+use App\Colors;
+use Nette,
+    Nette\Security\Passwords,
+    App\User,
+    \Kdyby\Doctrine\EntityManager,
+    \Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 
 /**
  * Users management.
  */
-class UserManager extends Nette\Object implements Nette\Security\IAuthenticator
+class UserManager extends BaseManager implements Nette\Security\IAuthenticator
 {
-	const
-		TABLE_NAME = 'users',
-		COLUMN_ID = 'id',
-		COLUMN_NAME = 'username',
-		COLUMN_PASSWORD_HASH = 'password',
-		COLUMN_ROLE = 'role';
+    /**
+     * @var \Kdyby\Doctrine\EntityManager
+     */
+    public $entityManager;
+
+    /** @var \Kdyby\Translation\Translator @inject */
+    public $translator;
 
 
-	/** @var Nette\Database\Context */
-	private $database;
+    public function __construct(EntityManager $entityManager, \Kdyby\Translation\Translator $translator)
+    {
+        parent::__construct($translator);
+        $this->entityManager = $entityManager;
+    }
 
-
-	public function __construct(Nette\Database\Context $database)
-	{
-		$this->database = $database;
-	}
-
-
-	/**
+    /**
 	 * Performs an authentication.
 	 * @return Nette\Security\Identity
 	 * @throws Nette\Security\AuthenticationException
 	 */
 	public function authenticate(array $credentials)
 	{
-		list($username, $password) = $credentials;
+		list($email, $password, $basePath) = $credentials;
 
-		$row = $this->database->table(self::TABLE_NAME)->where(self::COLUMN_NAME, $username)->fetch();
+        if(!$user = $this->entityManager->getRepository(User::getClassName())->findOneBy(array('email' => $email))
+            OR !Passwords::verify($password, $user->password)) //TODO - přeložit zprávu!
+            throw new Nette\Security\AuthenticationException(
+                $this->translator->translate('messages.signinForm.incorrect_passwd_or_email'), self::IDENTITY_NOT_FOUND);
 
-		if (!$row) {
-			throw new Nette\Security\AuthenticationException('The username is incorrect.', self::IDENTITY_NOT_FOUND);
+        $arr = array();
+        $arr['name'] = $user->name;
+        $arr['surname'] = $user->surname;
+        $arr['email'] = $user->email;
+        $arr['picture'] = $basePath . '/images/users/';
+        $colors = $this->entityManager->getRepository(Colors::getClassName())->findOneBy(array('id' => $user->color_id));
+        $arr['color_id'] = '#' . $colors->color;
 
-		} elseif (!Passwords::verify($password, $row[self::COLUMN_PASSWORD_HASH])) {
-			throw new Nette\Security\AuthenticationException('The password is incorrect.', self::INVALID_CREDENTIAL);
-
-		} elseif (Passwords::needsRehash($row[self::COLUMN_PASSWORD_HASH])) {
-			$row->update(array(
-				self::COLUMN_PASSWORD_HASH => Passwords::hash($password),
-			));
-		}
-
-		$arr = $row->toArray();
-		unset($arr[self::COLUMN_PASSWORD_HASH]);
-		return new Nette\Security\Identity($row[self::COLUMN_ID], $row[self::COLUMN_ROLE], $arr);
+        return new Nette\Security\Identity($user->id, 'User', $arr);
 	}
 
 
 	/**
+     * TODO hláška při duplicitě!
 	 * Adds new user.
 	 * @param  string
 	 * @param  string
 	 * @return void
-	 * @throws DuplicateNameException
+	 * @throws UniqueConstraintViolationException
 	 */
-	public function add($username, $password)
+	public function register($name, $surname, $email, $password)
 	{
 		try {
-			$this->database->table(self::TABLE_NAME)->insert(array(
-				self::COLUMN_NAME => $username,
-				self::COLUMN_PASSWORD_HASH => Passwords::hash($password),
-			));
-		} catch (Nette\Database\UniqueConstraintViolationException $e) {
-			throw new DuplicateNameException;
+            $user = new User;
+            $user->name = $name;
+            $user->surname = $surname;
+            $user->email = $email;
+            $user->password = Passwords::hash($password);
+            $user->picture = 0;
+            $user->color_id = 1;
+
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
+		} catch (UniqueConstraintViolationException $e) {
+            //throw new $e('Message');
 		}
 	}
 
 }
-
-
-
-class DuplicateNameException extends \Exception
-{}

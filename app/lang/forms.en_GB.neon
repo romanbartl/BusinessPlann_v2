@@ -1,0 +1,10 @@
+signin:
+    password: Password
+    submit: Sign In
+
+signup:
+    name: Name
+    surname: Surname
+    password: Password
+    password_again: Password again
+    submit: Create free account
