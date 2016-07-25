@@ -50,7 +50,7 @@ class UserManager extends BaseManager implements Nette\Security\IAuthenticator
         $arr['email'] = $user->email;
         $arr['picture'] = $basePath . '/images/users/';
         $colors = $this->entityManager->getRepository(Colors::getClassName())->findOneBy(array('id' => $user->color_id));
-        $arr['color_id'] = '#' . $colors->color;
+        $arr['color'] = '#' . $colors->color;
 
         return new Nette\Security\Identity($user->id, 'User', $arr);
 	}

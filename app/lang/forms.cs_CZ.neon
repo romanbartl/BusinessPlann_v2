@@ -1,10 +1,26 @@
+empty_field:
+    Toto pole nesmí zůstat prázdné!
+
+password:
+    Heslo
+
+incorrect_email:
+    Špatně zadaný E-mail!
+
+incorrect_passwd:
+    Špatně zadané heslo!
+
 signin:
-    password: Heslo
     submit: Přihlásit
 
 signup:
     name: Jméno
     surname: Příjmení
-    password: Heslo
     password_again: Heslo znovu
     submit: Vytvořit bezplatný účet
+    incorrect_name: Nesprávné jméno!
+    name_length: Jméno musí být alespoň %d znaky dlouhé!
+    incorrect_surname: Nesprávné příjmení!
+    surname_length: Příjmení musí být alespoň %d znaky dlouhé!
+    incorrect_passwd: Heslo musí obsahovat nejméně 8 znaků jedno velké písmeno a jedno číslo!
+    same_passwds: Hesla se musí shodovat!

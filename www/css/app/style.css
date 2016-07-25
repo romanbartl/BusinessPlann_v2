@@ -1,0 +1,63 @@
+.app_logo{
+	align-items: center;
+	justify-content: center;
+	margin-top: -30px;
+	padding-bottom: 30px;
+}
+
+.app_logo img{
+	height: 120px;
+	width: 120px;
+}
+
+#reg_information{
+	float: right;
+	border-left: 1px solid #9f9f9f;
+	width: 305px;
+	margin-top: 30px;
+	margin-left: 310px;
+	padding: 50px 0px 0px 40px;
+}
+
+#reg_form{
+	float: left;
+	margin-right: 40px;
+	width: 300px;
+}
+
+#reg_icons{
+	float: left;
+}
+
+#reg_text{
+	margin-left: 60px;
+
+}
+
+#reg_information .material-icons{
+	font-size: 48px;
+	margin-bottom: 95px;
+	margin-right: 40px;
+}
+
+#labeling_text{
+	margin-top: 25px;
+}
+
+#sharing_text{
+	margin-top: 15px;
+}
+
+.info_text {
+	margin-bottom: 80px;
+}
+
+.info_text .info_heading{
+	font-weight: bold;
+	color: #3f51b5;
+	font-size: 17px;
+}
+
+.info_text .text{
+	text-align: justify;
+}

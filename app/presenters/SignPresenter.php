@@ -50,25 +50,25 @@ class SignPresenter extends BasePresenter
 	protected function createComponentSignInForm()
 	{
         $form = new Form();
-        //$form->getElementPrototype()->class('ajax');
         $form->getElementPrototype()->novalidate('novalidate');
         $form->setTranslator($this->translator);
 
-        $form->addText('email')
-            ->setAttribute('placeholder', 'E-mail')
-            ->addRule(Form::EMAIL, 'messages.signinForm.incorrect_email')
-            ->addRule(Form::FILLED, 'messages.signinForm.empty_email');
+        $form->addText('email', 'E-mail')
+            ->setAttribute('id', 'email')
+            ->setAttribute('class', 'mdl-textfield__input')
+            ->addRule(Form::FILLED, 'forms.empty_field')
+            ->addRule(Form::PATTERN, 'forms.incorrect_email', '(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])');
 
-        $form->addPassword('password')
-            ->setAttribute('placeholder', 'forms.signin.password')
-            ->addRule(Form::PATTERN, 'messages.signinForm.incorrect_passwd', '[^<>]*')
-            ->addRule(Form::FILLED, 'messages.signinForm.empty_passwd');
 
-        $form->addSubmit('signInBut', 'forms.signin.submit');
+        $form->addPassword('password', 'forms.password')
+            ->setAttribute('id', 'password')
+            ->setAttribute('class', 'mdl-textfield__input')
+            ->addRule(Form::FILLED, 'forms.empty_field')
+            ->addRule(Form::PATTERN, 'forms.incorrect_passwd', '[^<>]*');
 
-        $form->onError[] = function() {
-            $this->redrawControl('signInFormSnippet');
-        };
+        $form->addSubmit('signInBut', 'forms.signin.submit')
+            ->setAttribute('class', 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect');
+
         $form->onSuccess[] = array($this, 'signInFormSucceeded');
 
         return $form;
@@ -87,43 +87,46 @@ class SignPresenter extends BasePresenter
 
     protected function createComponentSignUpForm() {
         $form = new Form;
-        //$form->getElementPrototype()->class('ajax');
         $form->getElementPrototype()->novalidate('novalidate');
         $form->setTranslator($this->translator);
 
-        $form->addText('name')
-            ->setAttribute('placeholder', 'forms.signup.name')
-            ->addRule(Form::PATTERN, 'messages.signupForm.incorrect_name', '[^<>(0-9)]*')
-            ->addRule(Form::MIN_LENGTH, 'messages.signupForm.name_length', 2)
-            ->addRule(Form::FILLED, 'messages.signupForm.empty_name');
+        $form->addText('name', 'forms.signup.name')
+            ->setAttribute('id', 'name')
+            ->setAttribute('class', 'mdl-textfield__input')
+            ->addRule(Form::PATTERN, 'forms.signup.incorrect_name', '[^<>(0-9)]*')
+            ->addRule(Form::MIN_LENGTH, 'forms.signup.name_length', 2)
+            ->addRule(Form::FILLED, 'forms.empty_field');
 
-        $form->addText('surname')
-            ->setAttribute('placeholder', 'forms.signup.surname')
-            ->addRule(Form::PATTERN, 'messages.signupForm.incorrect_surname', '[^<>(0-9)]*')
-            ->addRule(Form::MIN_LENGTH, 'messages.signupForm.surname_length', 2)
-            ->addRule(Form::FILLED, 'messages.signupForm.empty_surname');
+        $form->addText('surname', 'forms.signup.surname')
+            ->setAttribute('id', 'surname')
+            ->setAttribute('class', 'mdl-textfield__input')
+            ->addRule(Form::PATTERN, 'forms.signup.incorrect_surname', '[^<>(0-9)]*')
+            ->addRule(Form::MIN_LENGTH, 'forms.signup.name_length', 2)
+            ->addRule(Form::FILLED, 'forms.empty_field');
 
-        $form->addText('email')
-            ->setAttribute('placeholder', 'E-mail')
-            ->addRule(Form::EMAIL, 'messages.signupForm.incorrect_email')
-            ->addRule(Form::FILLED, 'messages.signupForm.empty_email');
+        $form->addText('email', 'E-mail')
+            ->setAttribute('id', 'email')
+            ->setAttribute('class', 'mdl-textfield__input')
+            ->addRule(Form::PATTERN, 'forms.incorrect_email', '(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])')
+            ->addRule(Form::FILLED, 'forms.empty_field');
 
-        $form->addPassword('password')
-            ->setAttribute('placeholder', 'forms.signup.password')
-            ->addRule(Form::PATTERN, 'messages.signupForm.incorrect_passwd', '^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(.){8,}')
-            ->addRule(Form::FILLED, 'messages.signupForm.empty_passwd');
+        $form->addPassword('password', 'forms.password')
+            ->setAttribute('id', 'password')
+            ->setAttribute('class', 'mdl-textfield__input')
+            ->addRule(Form::PATTERN, 'forms.incorrect_passwd', '^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(.){8,}')
+            ->addRule(Form::FILLED, 'forms.empty_field');
 
-        $form->addPassword('passwordControl')
-            ->setAttribute('placeholder', 'forms.signup.password_again')
-            ->addRule(Form::PATTERN, 'messages.signupForm.incorrect_passwd', '^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(.){8,}')
-            ->addRule(Form::EQUAL, 'messages.signupForm.same_passwds', $form['password'])
-            ->addRule(Form::FILLED, 'messages.signupForm.empty_passwd');
+        $form->addPassword('passwordControl', 'forms.signup.password_again')
+            ->setAttribute('id', 'passwordControl')
+            ->setAttribute('class', 'mdl-textfield__input')
+            ->addRule(Form::PATTERN, 'forms.incorrect_passwd', '^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(.){8,}')
+            ->addRule(Form::EQUAL, 'forms.signup.same_passwds', $form['password'])
+            ->addRule(Form::FILLED, 'forms.empty_field');
 
-        $form->addSubmit('signUpBut', 'forms.signup.submit');
+        $form->addSubmit('signUpBut', 'forms.signup.submit')
+            ->setAttribute('class', 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect');
 
-        $form->onError[] = function() {
-            $this->redrawControl('');
-        };
+
         $form->onSuccess[] = array($this, 'signUpFormSucceeded');
 
         return $form;

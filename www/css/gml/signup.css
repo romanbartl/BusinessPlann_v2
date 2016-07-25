@@ -1,0 +1,16 @@
+.app_logo{
+    align-items: center;
+    justify-content: center;
+    margin-top: -50px;
+}
+
+.mdl-layout {
+    align-items: center;
+    justify-content: center;
+}
+.mdl-layout__content {
+    left: calc(50% - 420px);
+    position: absolute;
+    padding: 24px;
+    float: left;
+}

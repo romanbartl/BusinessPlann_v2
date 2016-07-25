@@ -1,10 +1,26 @@
+empty_field:
+    This field has to be filled!
+
+password:
+    Password
+
+incorrect_email:
+    Incorrect E-mail!
+
+incorrect_passwd:
+    Incorrect password!
+
 signin:
-    password: Password
     submit: Sign In
 
 signup:
     name: Name
     surname: Surname
-    password: Password
     password_again: Password again
     submit: Create free account
+    incorrect_name: Incorrect name!
+    name_length: Length of name must be at least %d letters!
+    incorrect_surname: Incorrect surname!
+    surname_length: Length of surname must be at least %d letters!
+    incorrect_passwd: Password has to contain at lest 8 letters one big letter and one number!
+    same_passwds: Passwords have to match!

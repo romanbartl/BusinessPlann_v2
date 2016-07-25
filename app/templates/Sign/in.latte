@@ -1,7 +1,42 @@
+{block head}
+    <link rel="stylesheet" type="text/css" href="{$basePath}/css/gml/signin.css">
+{/block}
 
 {block content}
 
-<h1 n:block="title">{_ ui.title.signin}</h1>
+<div class="mdl-layout mdl-js-layout mdl-color--grey-100">
+    <div class="app_logo">
+        <a n:href="Homepage:default">
+            <img src="{$basePath}/images/app/logo.png">
+        </a>
+    </div>
 
-{control signInForm}
+    <main class="mdl-layout__content">
+        <div class="mdl-card mdl-shadow--6dp">
+            <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
+                <h2 n:block="title" class="mdl-card__title-text">{_ ui.title.signin}</h2>
+            </div>
+            {form signInForm}
+                <div class="mdl-card__supporting-text">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        {input email}
+                        {label email class=>'mdl-textfield__label', for=>'email' /}
+                        {inputError email}
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        {input password}
+                        {label password class=>'mdl-textfield__label', for=>'password' /}
+                        {inputError password}
+                    </div>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    {input signInBut}
+                </div>
+            {/form}
+        </div>
+    </main>
+</div>
+
+
+
 

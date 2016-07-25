@@ -1,0 +1,21 @@
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+form th, form td {
+    vertical-align: top;
+    font-weight: normal;
+}
+
+form th {
+    text-align: right;
+}
+
+form .required label {
+    font-weight: bold;
+}
+
+form .error {
+    color: #D00;
+    font-weight: bold;
+}
