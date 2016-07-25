@@ -6,3 +6,11 @@ title:
 buttons:
     signup: Sign Up
     signin: Sing In
+
+signup:
+    events: Events
+    msg_events: All your events of your life in one place
+    labels: Labels
+    msg_labels: Easy orientation in your events through labels
+    share: Share
+    msg_share: Share your events with your family friends or colleagues through groups

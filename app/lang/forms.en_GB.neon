@@ -12,6 +12,8 @@ incorrect_passwd:
 
 signin:
     submit: Sign In
+    dont_have_account: Still don't have an account?
+    create_account: Create one for free!
 
 signup:
     name: Name
@@ -24,3 +26,5 @@ signup:
     surname_length: Length of surname must be at least %d letters!
     incorrect_passwd: Password has to contain at lest 8 letters one big letter and one number!
     same_passwds: Passwords have to match!
+    already_signup: Already have an account?
+    signin: Sign In

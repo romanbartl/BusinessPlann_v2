@@ -69,29 +69,33 @@
 
         <div id="reg_text">
             <div id="managing_text" class="info_text">
-                <span class="info_heading">Události</span>
+                <span class="info_heading">{_ ui.signup.events}</span>
 
                 <div class="text">
-                    <span>Všechny vaše události na jednom místě</span>
+                    <span>{_ ui.signup.msg_events}</span>
                 </div>
             </div>
 
             <div id="labeling_text" class="info_text">
-                <span class="info_heading">Štítkování</span>
+                <span class="info_heading">{_ ui.signup.labels}</span>
 
                 <div class="text">
-                    <span>Přehlednost ve vašich událostech prostřednictvím štítků</span>
+                    <span>{_ ui.signup.msg_labels}</span>
                 </div>
             </div>
 
             <div id="sharing_text" class="info_text">
-                <span class="info_heading">Sdílení</span>
+                <span class="info_heading">{_ ui.signup.share}</span>
 
                 <div class="text">
-                    <span>Sdílení vašich událostí s rodinou, přáteli a kolegy ve skupinách</span>
+                    <span>{_ ui.signup.msg_share}</span>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="account">
+        {_ forms.signup.already_signup} <a n:href="Sign:in">{_ forms.signup.signin}</a>
     </div>
 
 </div>

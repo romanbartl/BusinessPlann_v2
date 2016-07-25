@@ -6,3 +6,11 @@ title:
 buttons:
     signup: Registrace
     signin: Přihlášení
+
+signup:
+    events: Události
+    msg_events: Všechny vaše události na jednom místě
+    labels: Štítkování
+    msg_labels: Přehlednost ve vašich událostech prostřednictvím štítků
+    share: Sdílení
+    msg_share: Sdílení vašich událostí s rodinou přáteli a kolegy ve skupinách

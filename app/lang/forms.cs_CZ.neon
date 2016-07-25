@@ -12,6 +12,8 @@ incorrect_passwd:
 
 signin:
     submit: Přihlásit
+    dont_have_account: Nemáte účet?
+    create_account: Vytvořte si bezplatný účet!
 
 signup:
     name: Jméno
@@ -24,3 +26,5 @@ signup:
     surname_length: Příjmení musí být alespoň %d znaky dlouhé!
     incorrect_passwd: Heslo musí obsahovat nejméně 8 znaků jedno velké písmeno a jedno číslo!
     same_passwds: Hesla se musí shodovat!
+    already_signup: Máte již účet?
+    signin: Přihlaste se!
